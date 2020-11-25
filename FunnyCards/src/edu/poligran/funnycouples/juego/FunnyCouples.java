@@ -1,8 +1,11 @@
 
 package edu.poligran.funnycouples.juego;
 
+/*Versión Mia */
+
 import java.util.*;
-import java.util.ArrayList;
+
+import edu.poligran.funnycouples.juego.Cartas;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -49,7 +52,7 @@ public static void main(String[] args) {
 @Override
 public void start(Stage VentanaPrincipal) {
 	
-	Cartas carta1 = new Cartas(.);
+	//Cartas carta1 = new Cartas(C1, );
 	
 	//nodo tipo texto
 	Label mensaje = new Label("Bienvenidos a FunnyCouples Game. Recuerde que debe encontrar todas las parejas en el menor de los intentos posibles. Buena suerte...");
@@ -67,6 +70,37 @@ public void start(Stage VentanaPrincipal) {
 	Btn2.setMinWidth(80);	
 	Btn2.setTranslateX(240);
 	Btn2.setTranslateY(30);
+	
+	//clic botones
+	
+	Btn1.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+		@Override
+		public void handle(MouseEvent e) {
+			
+		//Baraja.add(Carta1);	
+						
+		//Collections.shuffle(imagenes);
+			
+			//imageObject
+			
+			
+		}});
+	
+	private void voltear_carta(Cartas carta, ImageView imagen,String imagenes) {
+		if(carta.isCarta_Volteada()) {
+			carta.setCarta_Volteada(false);
+			Image imageObject = new Image(imagenes);
+			imagen.setImage(imageObject);
+		}else {
+			carta.setCarta_Volteada(true);
+			Image imageObject = new Image("Imagenes/incognita.jpg");
+			imagen.setImage(imageObject);
+		}
+	
+
+}
+	
+	
 	
 	//imágenes
 	
@@ -86,7 +120,7 @@ public void start(Stage VentanaPrincipal) {
 			 clic_uno=0;
 			 clic_dos=0;
 			 PosicionImagen=1;
-			 carta1.setImagenCarta(Imagen1);
+			 //carta1.setImagenCarta(Imagen1);
 		 }
 		}
 		);
