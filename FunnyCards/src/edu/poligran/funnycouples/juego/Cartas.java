@@ -4,17 +4,38 @@ import java.util.ArrayList;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Cartas extends FunnyCouples {
 	
 	
-	public int ID_Carta;
-	public ImageView getImagenCarta() {
+	int ID_Carta;
+	String ImagenCarta;
+	boolean Carta_Volteada;    
+	String tema;
+
+	public String Buscarimagen;
+	
+	
+	private final ObjectProperty<ImageView> imageFile = new SimpleObjectProperty<>();
+	
+	
+public Cartas(int id_carta, String imagencarta, String temacarta, boolean destapada) {
+	this.ID_Carta=id_carta;
+	this.ImagenCarta=imagencarta;
+	this.tema=temacarta;
+	this.Carta_Volteada=destapada;
+	
+}
+	
+	public String getImagenCarta() {
 		return ImagenCarta;
 	}
+	
+	
 
-	public void setImagenCarta(ImageView imagenCarta) {
+	public void setImagenCarta(String imagenCarta) {
 		ImagenCarta = imagenCarta;
 	}
 
@@ -46,19 +67,9 @@ public class Cartas extends FunnyCouples {
 		ID_Carta = iD_Carta;
 	}
 
-	public ImageView ImagenCarta; 
-	public boolean Carta_Volteada;    
-	public String tema;
-	
-	public String Buscarimagen;
 	
 	
-	private final ObjectProperty<ImageView> imageFile = new SimpleObjectProperty<>();
 	
-	
-public Cartas(int id_carta, ImageView imagencarta, String temacarta, boolean destapada) {
-	
-}
 	
 public int getID_Carta() {
 	
@@ -68,35 +79,14 @@ public int getID_Carta() {
 public ImageView getImageFile() {
     return imageFile.get();
 }
-  
-public void asignar_cartas_matematicas() {
-	
-	
-	ImageView imagen1=new ImageView("matematicas/1_.png");
-	ImageView imagen2=new ImageView("matematicas/1.png");
-	ImageView imagen3=new ImageView("matematicas/10_.png");
-	ImageView imagen4=new ImageView("matematicas/10.png");
-	ImageView imagen5=new ImageView("matematicas/11_.png");
-	ImageView imagen6=new ImageView("matematicas/11.png");
-	ImageView imagen7=new ImageView("matematicas/12_.png");
-	ImageView imagen8=new ImageView("matematicas/12.png");
-	ImageView imagen9=new ImageView("matematicas/13_.png");
-	ImageView imagen10=new ImageView("matematicas/13.png");
-	ImageView imagen11=new ImageView("matematicas/14_.png");
-	ImageView imagen12=new ImageView("matematicas/14.png");
-	ImageView imagen13=new ImageView("matematicas/15_.png");
-	ImageView imagen14=new ImageView("matematicas/15.png");
-	ImageView imagen15=new ImageView("matematicas/2_.png");
-	ImageView imagen16=new ImageView("matematicas/2.png");
-	ImageView imagen17=new ImageView("matematicas/3_.png");
-	ImageView imagen18=new ImageView("matematicas/3.png");
-	ImageView imagen19=new ImageView("matematicas/4.png");
-	ImageView imagen20=new ImageView("matematicas/4_.png");
-	
 
-		
-		
-		}
+public ImageView setImageFile() {
+    return imageFile.get();
+}
+
+
+
+
 
 public void asignar_cartas_ingles() {
 	
@@ -151,6 +141,9 @@ public void asignar_cartas_programacion()
 	ImageView imagen19=new ImageView("programacion/4.png");
 	ImageView imagen20=new ImageView("programacion/4_.png");
 	*/
+}
+public void asignar_cartas_matematicas() {
+	
 }
 
 }

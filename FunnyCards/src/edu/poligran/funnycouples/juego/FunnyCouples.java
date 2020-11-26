@@ -29,13 +29,19 @@ public class FunnyCouples extends Application{
 	int clic_uno=0;
 	int clic_dos=0;
 	int PosicionImagen;
+	String rutaImagen;
 	
+	//Cartas Baraja = new Cartas(0," "," ",false);
+	Cartas Baraja;
 	
 	Scene miEscena;
 	Pane contenedor;
 	Button Btn1, Btn2, Btn3;
 	ImageView  Imagen1, Imagen2, Imagen3, Imagen4, Imagen5, Imagen6, Imagen7, Imagen8, Imagen9, Imagen10,
 	Imagen11, Imagen12, Imagen13, Imagen14, Imagen15, Imagen16, Imagen17, Imagen18, Imagen19, Imagen20;
+	
+	ImageView tempImagen,  imagen1, imagen2, imagen3, imagen4, imagen5, imagen6, imagen7, imagen8, imagen9, imagen10,
+	imagen11, imagen12, imagen13, imagen14, imagen15, imagen16, imagen17, imagen18, imagen19, imagen20;
 	
 	
 	
@@ -52,7 +58,8 @@ public static void main(String[] args) {
 @Override
 public void start(Stage VentanaPrincipal) {
 	
-	//Cartas carta1 = new Cartas(C1, );
+
+	
 	
 	//nodo tipo texto
 	Label mensaje = new Label("Bienvenidos a FunnyCouples Game. Recuerde que debe encontrar todas las parejas en el menor de los intentos posibles. Buena suerte...");
@@ -77,15 +84,41 @@ public void start(Stage VentanaPrincipal) {
 		@Override
 		public void handle(MouseEvent e) {
 			
-		//Baraja.add(Carta1);	
-						
-		//Collections.shuffle(imagenes);
+			seleccionartema();
 			
-			//imageObject
+		    asignar_cartas_matematicas();
+		    
 			
-			
+				
+		
 		}});
 	
+	Btn2.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+		@Override
+		public void handle(MouseEvent e) {
+			
+			seleccionartema();
+			
+		    asignar_cartas_ingles();
+		    
+			
+				
+		
+		}});
+	
+	Btn3.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+		@Override
+		public void handle(MouseEvent e) {
+			
+			seleccionartema();
+			
+		    asignar_cartas_programacion();
+		    
+			
+				
+		
+		}});
+	/*
 	private void voltear_carta(Cartas carta, ImageView imagen,String imagenes) {
 		if(carta.isCarta_Volteada()) {
 			carta.setCarta_Volteada(false);
@@ -100,6 +133,7 @@ public void start(Stage VentanaPrincipal) {
 
 }
 	
+	*/
 	
 	
 	//imágenes
@@ -109,8 +143,8 @@ public void start(Stage VentanaPrincipal) {
 	/* Se definen los ImageView iniciales con la imagen incognita.jpg  */
 	Imagen1 = new ImageView("imagenes/incognita.jpg");
 	Imagen1.relocate(10, 100);
-	Imagen1.setFitWidth(155);
-	Imagen1.setFitHeight(155);
+	Imagen1.setFitWidth(105);
+	Imagen1.setFitHeight(105);
 	Imagen1.setPickOnBounds(true);
 	
 	Imagen1.setOnMouseClicked(new EventHandler <MouseEvent> (){
@@ -120,7 +154,12 @@ public void start(Stage VentanaPrincipal) {
 			 clic_uno=0;
 			 clic_dos=0;
 			 PosicionImagen=1;
-			 //carta1.setImagenCarta(Imagen1);
+			 Baraja=ListaCartas.get(0);
+			 rutaImagen=Baraja.getImagenCarta().toString();
+			 Imagen1.setImage(new Image(rutaImagen));
+			
+			 
+			
 		 }
 		}
 		);
@@ -129,14 +168,19 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen2 = new ImageView("Imagenes/incognita.jpg");
 	Imagen2.relocate(150, 100);
-	Imagen2.setFitWidth(155);
-	Imagen2.setFitHeight(155);
+	Imagen2.setFitWidth(105);
+	Imagen2.setFitHeight(105);
 	Imagen2.setPickOnBounds(true);
 	Imagen2.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=2;
+			
+			Baraja=ListaCartas.get(1);
+			 rutaImagen=Baraja.getImagenCarta().toString();
+			 //rutaImagen=toString();
+			 Imagen2.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -145,8 +189,8 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen3 = new ImageView("Imagenes/incognita.jpg");
 	Imagen3.relocate(290, 100);
-	Imagen3.setFitWidth(155);
-	Imagen3.setFitHeight(155);
+	Imagen3.setFitWidth(105);
+	Imagen3.setFitHeight(105);
 	
 	Imagen3.setPickOnBounds(true);
 	Imagen3.setOnMouseClicked(new EventHandler <MouseEvent> (){
@@ -154,6 +198,11 @@ public void start(Stage VentanaPrincipal) {
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=3;
+			 
+				Baraja=ListaCartas.get(2);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 //rutaImagen=toString();
+				 Imagen3.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -161,14 +210,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen4 = new ImageView("Imagenes/incognita.jpg");
 	Imagen4.relocate(430, 100);
-	Imagen4.setFitWidth(155);
-	Imagen4.setFitHeight(155);
+	Imagen4.setFitWidth(105);
+	Imagen4.setFitHeight(105);
 	Imagen4.setPickOnBounds(true);
 	Imagen4.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=4;
+			
+				Baraja=ListaCartas.get(3);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen4.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -176,14 +229,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen5 = new ImageView("Imagenes/incognita.jpg");
 	Imagen5.relocate(570, 100);
-	Imagen5.setFitWidth(155);
-	Imagen5.setFitHeight(155);
+	Imagen5.setFitWidth(105);
+	Imagen5.setFitHeight(105);
 	Imagen5.setPickOnBounds(true);
 	Imagen5.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=5;
+			 
+				Baraja=ListaCartas.get(4);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen5.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -191,14 +248,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen6 = new ImageView("Imagenes/incognita.jpg");
 	Imagen6.relocate(10, 250);
-	Imagen6.setFitWidth(155);
-	Imagen6.setFitHeight(155);
+	Imagen6.setFitWidth(105);
+	Imagen6.setFitHeight(105);
 	Imagen6.setPickOnBounds(true);
 	Imagen6.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=6;
+			
+				Baraja=ListaCartas.get(5);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen6.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -206,14 +267,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen7 = new ImageView("Imagenes/incognita.jpg");
 	Imagen7.relocate(150, 250);
-	Imagen7.setFitWidth(155);
-	Imagen7.setFitHeight(155);
+	Imagen7.setFitWidth(105);
+	Imagen7.setFitHeight(105);
 	Imagen7.setPickOnBounds(true);
 	Imagen7.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=7;
+			
+				Baraja=ListaCartas.get(6);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen7.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -221,14 +286,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen8 = new ImageView("Imagenes/incognita.jpg");
 	Imagen8.relocate(290, 250);
-	Imagen8.setFitWidth(155);
-	Imagen8.setFitHeight(155);
+	Imagen8.setFitWidth(105);
+	Imagen8.setFitHeight(105);
 	Imagen8.setPickOnBounds(true);
 	Imagen8.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=8;
+			 
+				Baraja=ListaCartas.get(7);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen8.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -236,14 +305,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen9 = new ImageView("Imagenes/incognita.jpg");
 	Imagen9.relocate(430, 250);
-	Imagen9.setFitWidth(155);
-	Imagen9.setFitHeight(155);
+	Imagen9.setFitWidth(105);
+	Imagen9.setFitHeight(105);
 	Imagen9.setPickOnBounds(true);
 	Imagen9.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=9;
+			 
+				Baraja=ListaCartas.get(8);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen9.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -251,14 +324,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen10 = new ImageView("Imagenes/incognita.jpg");
 	Imagen10.relocate(570, 250);
-	Imagen10.setFitWidth(155);
-	Imagen10.setFitHeight(155);
+	Imagen10.setFitWidth(105);
+	Imagen10.setFitHeight(105);
 	Imagen10.setPickOnBounds(true);
 	Imagen10.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=10;
+			
+				Baraja=ListaCartas.get(9);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen10.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -266,14 +343,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen11 = new ImageView("Imagenes/incognita.jpg");
 	Imagen11.relocate(10, 400);
-	Imagen11.setFitWidth(155);
-	Imagen11.setFitHeight(155);
+	Imagen11.setFitWidth(105);
+	Imagen11.setFitHeight(105);
 	Imagen11.setPickOnBounds(true);
 	Imagen11.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=11;
+			 
+				Baraja=ListaCartas.get(10);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen11.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -281,14 +362,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen12 = new ImageView("Imagenes/incognita.jpg");
 	Imagen12.relocate(150, 400);
-	Imagen12.setFitWidth(155);
-	Imagen12.setFitHeight(155);
+	Imagen12.setFitWidth(105);
+	Imagen12.setFitHeight(105);
 	Imagen12.setPickOnBounds(true);
 	Imagen12.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=12;
+			 
+				Baraja=ListaCartas.get(11);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen12.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -296,14 +381,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen13 = new ImageView("Imagenes/incognita.jpg");
 	Imagen13.relocate(290, 400);
-	Imagen13.setFitWidth(155);
-	Imagen13.setFitHeight(155);
+	Imagen13.setFitWidth(105);
+	Imagen13.setFitHeight(105);
 	Imagen13.setPickOnBounds(true);
 	Imagen13.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=13;
+			
+				Baraja=ListaCartas.get(12);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen13.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -311,14 +400,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen14 = new ImageView("Imagenes/incognita.jpg");
 	Imagen14.relocate(430, 400);
-	Imagen14.setFitWidth(155);
-	Imagen14.setFitHeight(155);
+	Imagen14.setFitWidth(105);
+	Imagen14.setFitHeight(105);
 	Imagen14.setPickOnBounds(true);
 	Imagen14.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=14;
+			
+				Baraja=ListaCartas.get(13);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen14.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -326,14 +419,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen15 = new ImageView("Imagenes/incognita.jpg");
 	Imagen15.relocate(570, 400);
-	Imagen15.setFitWidth(155);
-	Imagen15.setFitHeight(155);
+	Imagen15.setFitWidth(105);
+	Imagen15.setFitHeight(105);
 	Imagen15.setPickOnBounds(true);
 	Imagen15.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=15;
+			
+				Baraja=ListaCartas.get(14);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen15.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -341,14 +438,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen16 = new ImageView("Imagenes/incognita.jpg");
 	Imagen16.relocate(10, 550);
-	Imagen16.setFitWidth(155);
-	Imagen16.setFitHeight(155);
+	Imagen16.setFitWidth(105);
+	Imagen16.setFitHeight(105);
 	Imagen16.setPickOnBounds(true);
 	Imagen16.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=16;
+			
+				Baraja=ListaCartas.get(15);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen16.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -356,14 +457,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen17 = new ImageView("Imagenes/incognita.jpg");
 	Imagen17.relocate(150, 550);
-	Imagen17.setFitWidth(155);
-	Imagen17.setFitHeight(155);
+	Imagen17.setFitWidth(105);
+	Imagen17.setFitHeight(105);
 	Imagen17.setPickOnBounds(true);
 	Imagen17.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=17;
+			 
+				Baraja=ListaCartas.get(16);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen17.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -371,14 +476,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen18 = new ImageView("Imagenes/incognita.jpg");
 	Imagen18.relocate(290, 550);
-	Imagen18.setFitWidth(155);
-	Imagen18.setFitHeight(155);
+	Imagen18.setFitWidth(105);
+	Imagen18.setFitHeight(105);
 	Imagen18.setPickOnBounds(true);
 	Imagen18.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=18;
+			 
+				Baraja=ListaCartas.get(17);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen18.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -386,14 +495,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen19 = new ImageView("Imagenes/incognita.jpg");
 	Imagen19.relocate(430, 550);
-	Imagen19.setFitWidth(155);
-	Imagen19.setFitHeight(155);
+	Imagen19.setFitWidth(105);
+	Imagen19.setFitHeight(105);
 	Imagen19.setPickOnBounds(true);
 	Imagen19.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=19;
+			
+				Baraja=ListaCartas.get(18);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen19.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -402,14 +515,18 @@ public void start(Stage VentanaPrincipal) {
 	
 	Imagen20 = new ImageView("Imagenes/incognita.jpg");
 	Imagen20.relocate(570, 550);
-	Imagen20.setFitWidth(155);
-	Imagen20.setFitHeight(155);
+	Imagen20.setFitWidth(105);
+	Imagen20.setFitHeight(105);
 	Imagen20.setPickOnBounds(true);
 	Imagen20.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
 			 System.out.println("Double clicked");
 			 PosicionImagen=20;
+			
+				Baraja=ListaCartas.get(19);
+				 rutaImagen=Baraja.getImagenCarta().toString();
+				 Imagen20.setImage(new Image(rutaImagen));
 			 	 
 			 }
 		 }
@@ -448,34 +565,195 @@ public void start(Stage VentanaPrincipal) {
 
 public void seleccionartema() {
 	
-	ImageView imagen1=new ImageView("matematicas/1_.png");
-	ImageView imagen2=new ImageView("matematicas/1.png");
-	ImageView imagen3=new ImageView("matematicas/10_.png");
-	ImageView imagen4=new ImageView("matematicas/10.png");
-	ImageView imagen5=new ImageView("matematicas/11_.png");
-	ImageView imagen6=new ImageView("matematicas/11.png");
-	ImageView imagen7=new ImageView("matematicas/12_.png");
-	ImageView imagen8=new ImageView("matematicas/12.png");
-	ImageView imagen9=new ImageView("matematicas/13_.png");
-	ImageView imagen10=new ImageView("matematicas/13.png");
-	ImageView imagen11=new ImageView("matematicas/14_.png");
-	ImageView imagen12=new ImageView("matematicas/14.png");
-	ImageView imagen13=new ImageView("matematicas/15_.png");
-	ImageView imagen14=new ImageView("matematicas/15.png");
-	ImageView imagen15=new ImageView("matematicas/2_.png");
-	ImageView imagen16=new ImageView("matematicas/2.png");
-	ImageView imagen17=new ImageView("matematicas/3_.png");
-	ImageView imagen18=new ImageView("matematicas/3.png");
-	ImageView imagen19=new ImageView("matematicas/4.png");
-	ImageView imagen20=new ImageView("matematicas/4_.png");
 	
+	Imagen1.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen2.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen3.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen4.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen5.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen6.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen7.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen8.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen9.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen10.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen11.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen12.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen13.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen14.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen15.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen16.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen17.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen18.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen19.setImage(new Image("Imagenes/incognita.jpg"));
+	Imagen20.setImage(new Image("Imagenes/incognita.jpg"));
 	
-	
+}
+
+public ArrayList<ImageView> getImages() {
+    return getImages();
 }
 
 public void repartircartas() {
 	
 }
+
+public void asignar_cartas_matematicas() {
+	
+	
+	ListaCartas.clear();
+	
+	Cartas carta1 = new Cartas(1,"matematicas/1_.png", "M", false);
+	Cartas carta2 = new Cartas(1,"matematicas/1.png", "M", false);
+	Cartas carta3 = new Cartas(2,"matematicas/10_.png", "M", false );
+	Cartas carta4 = new Cartas(2,"matematicas/10.png", "M", false );
+	Cartas carta5 = new Cartas(3,"matematicas/11_.png", "M", false );
+	Cartas carta6 = new Cartas(3,"matematicas/11.png", "M", false );
+	Cartas carta7 = new Cartas(4,"matematicas/12_.png", "M", false );
+	Cartas carta8 = new Cartas(4,"matematicas/12.png", "M", false );
+	Cartas carta9 = new Cartas(5,"matematicas/13_.png", "M", false );
+	Cartas carta10 = new Cartas(5,"matematicas/13.png", "M", false );
+	Cartas carta11 = new Cartas(6,"matematicas/14.png", "M", false );
+	Cartas carta12 = new Cartas(6,"matematicas/14.png", "M", false );
+	Cartas carta13 = new Cartas(7,"matematicas/15_.png", "M", false );
+	Cartas carta14 = new Cartas(7,"matematicas/15.png", "M", false );
+	Cartas carta15 = new Cartas(8,"matematicas/2_.png", "M", false );
+	Cartas carta16 = new Cartas(8,"matematicas/2.png", "M", false );
+	Cartas carta17 = new Cartas(9,"matematicas/3_.png", "M", false );
+	Cartas carta18 = new Cartas(9,"matematicas/3.png", "M", false );
+	Cartas carta19 = new Cartas(10,"matematicas/4_.png", "M", false );
+	Cartas carta20 = new Cartas(10,"matematicas/4.png", "M", false );
+	
+	
+	ListaCartas.add(0, carta1);
+	ListaCartas.add(1, carta2);
+	ListaCartas.add(2, carta3);
+	ListaCartas.add(3, carta4);
+	ListaCartas.add(4, carta5);
+	ListaCartas.add(5, carta6);
+	ListaCartas.add(6, carta7);
+	ListaCartas.add(7, carta8);
+	ListaCartas.add(8, carta9);
+	ListaCartas.add(9, carta10);
+	ListaCartas.add(10, carta11);
+	ListaCartas.add(11, carta12);
+	ListaCartas.add(12, carta13);
+	ListaCartas.add(13, carta14);
+	ListaCartas.add(14, carta15);
+	ListaCartas.add(15, carta16);
+	ListaCartas.add(16, carta17);
+	ListaCartas.add(17, carta18);
+	ListaCartas.add(18, carta19);
+	ListaCartas.add(19, carta20);
+	
+	Collections.shuffle(ListaCartas);
+	
+		
+		}
+public void asignar_cartas_programacion() {
+	
+ListaCartas.clear();
+	
+	Cartas carta1 = new Cartas(1,"programacion/1.jpg", "M", false);
+	Cartas carta2 = new Cartas(1,"programacion/1r.jpg", "M", false);
+	Cartas carta3 = new Cartas(2,"programacion/2.jpg", "M", false );
+	Cartas carta4 = new Cartas(2,"programacion/2r.jpg", "M", false );
+	Cartas carta5 = new Cartas(3,"programacion/3.jpg", "M", false );
+	Cartas carta6 = new Cartas(3,"programacion/3r.jpg", "M", false );
+	Cartas carta7 = new Cartas(4,"programacion/4.jpg", "M", false );
+	Cartas carta8 = new Cartas(4,"programacion/4r.jpg", "M", false );
+	Cartas carta9 = new Cartas(5,"programacion/5.jpg", "M", false );
+	Cartas carta10 = new Cartas(5,"programacion/5r.jpg", "M", false );
+	Cartas carta11 = new Cartas(6,"programacion/6.jpg", "M", false );
+	Cartas carta12 = new Cartas(6,"programacion/6r.jpg", "M", false );
+	Cartas carta13 = new Cartas(7,"programacion/7.jpg", "M", false );
+	Cartas carta14 = new Cartas(7,"programacion/7r.jpg", "M", false );
+	Cartas carta15 = new Cartas(8,"programacion/8.jpg", "M", false );
+	Cartas carta16 = new Cartas(8,"programacion/8r.jpg", "M", false );
+	Cartas carta17 = new Cartas(9,"programacion/9.jpg", "M", false );
+	Cartas carta18 = new Cartas(9,"programacion/9r.jpg", "M", false );
+	Cartas carta19 = new Cartas(10,"programacion/10.jpg", "M", false );
+	Cartas carta20 = new Cartas(10,"programacion/10r.jpg", "M", false );
+	
+	
+	ListaCartas.add(0, carta1);
+	ListaCartas.add(1, carta2);
+	ListaCartas.add(2, carta3);
+	ListaCartas.add(3, carta4);
+	ListaCartas.add(4, carta5);
+	ListaCartas.add(5, carta6);
+	ListaCartas.add(6, carta7);
+	ListaCartas.add(7, carta8);
+	ListaCartas.add(8, carta9);
+	ListaCartas.add(9, carta10);
+	ListaCartas.add(10, carta11);
+	ListaCartas.add(11, carta12);
+	ListaCartas.add(12, carta13);
+	ListaCartas.add(13, carta14);
+	ListaCartas.add(14, carta15);
+	ListaCartas.add(15, carta16);
+	ListaCartas.add(16, carta17);
+	ListaCartas.add(17, carta18);
+	ListaCartas.add(18, carta19);
+	ListaCartas.add(19, carta20);
+	
+	Collections.shuffle(ListaCartas);
+	
+	
+}
+
+public void asignar_cartas_ingles() {
+	
+ListaCartas.clear();
+	
+	Cartas carta1 = new Cartas(1,"ingles/1_.png", "M", false);
+	Cartas carta2 = new Cartas(1,"ingles/1.png", "M", false);
+	Cartas carta3 = new Cartas(2,"ingles/10_.png", "M", false );
+	Cartas carta4 = new Cartas(2,"ingles/10.png", "M", false );
+	Cartas carta5 = new Cartas(3,"ingles/11_.png", "M", false );
+	Cartas carta6 = new Cartas(3,"ingles/11.png", "M", false );
+	Cartas carta7 = new Cartas(4,"ingles/12_.png", "M", false );
+	Cartas carta8 = new Cartas(4,"ingles/12.png", "M", false );
+	Cartas carta9 = new Cartas(5,"ingles/13_.png", "M", false );
+	Cartas carta10 = new Cartas(5,"ingles/13.png", "M", false );
+	Cartas carta11 = new Cartas(6,"ingles/14.png", "M", false );
+	Cartas carta12 = new Cartas(6,"ingles/14.png", "M", false );
+	Cartas carta13 = new Cartas(7,"ingles/15_.png", "M", false );
+	Cartas carta14 = new Cartas(7,"ingles/15.png", "M", false );
+	Cartas carta15 = new Cartas(8,"ingles/2_.png", "M", false );
+	Cartas carta16 = new Cartas(8,"ingles/2.png", "M", false );
+	Cartas carta17 = new Cartas(9,"ingles/3_.png", "M", false );
+	Cartas carta18 = new Cartas(9,"ingles/3.png", "M", false );
+	Cartas carta19 = new Cartas(10,"ingles/4_.png", "M", false );
+	Cartas carta20 = new Cartas(10,"ingles/4.png", "M", false );
+	
+	
+	ListaCartas.add(0, carta1);
+	ListaCartas.add(1, carta2);
+	ListaCartas.add(2, carta3);
+	ListaCartas.add(3, carta4);
+	ListaCartas.add(4, carta5);
+	ListaCartas.add(5, carta6);
+	ListaCartas.add(6, carta7);
+	ListaCartas.add(7, carta8);
+	ListaCartas.add(8, carta9);
+	ListaCartas.add(9, carta10);
+	ListaCartas.add(10, carta11);
+	ListaCartas.add(11, carta12);
+	ListaCartas.add(12, carta13);
+	ListaCartas.add(13, carta14);
+	ListaCartas.add(14, carta15);
+	ListaCartas.add(15, carta16);
+	ListaCartas.add(16, carta17);
+	ListaCartas.add(17, carta18);
+	ListaCartas.add(18, carta19);
+	ListaCartas.add(19, carta20);
+	
+	Collections.shuffle(ListaCartas);
+	
+	
+	
+}
+
 
 
 }
