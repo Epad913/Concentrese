@@ -26,13 +26,13 @@ public class FunnyCouples extends Application{
 	
 	/* Se definen los elementos con los que se va a trabajar en JFx */
 	
-	int clic_uno=0;
-	int clic_dos=0;
-	int PosicionImagen;
+	int dobleclic=0;
+	int ID_uno=0, ID_dos=0;
+	int PosicionImagen=0, x=0;
 	String rutaImagen;
 	
-	//Cartas Baraja = new Cartas(0," "," ",false);
-	Cartas Baraja;
+	
+	Cartas Baraja, Baraja2;
 	
 	Scene miEscena;
 	Pane contenedor;
@@ -100,10 +100,7 @@ public void start(Stage VentanaPrincipal) {
 			seleccionartema();
 			
 		    asignar_cartas_ingles();
-		    
-			
-				
-		
+		    		
 		}});
 	
 	Btn3.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
@@ -113,9 +110,7 @@ public void start(Stage VentanaPrincipal) {
 			seleccionartema();
 			
 		    asignar_cartas_programacion();
-		    
-			
-				
+		    				
 		
 		}});
 	/*
@@ -147,21 +142,50 @@ public void start(Stage VentanaPrincipal) {
 	Imagen1.setFitHeight(105);
 	Imagen1.setPickOnBounds(true);
 	
-	Imagen1.setOnMouseClicked(new EventHandler <MouseEvent> (){
+	/*    */
+	
+	Imagen1.setOnMouseClicked(new EventHandler <MouseEvent> (){ 
 		 @Override
-	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 clic_uno=0;
-			 clic_dos=0;
-			 PosicionImagen=1;
+	     public void handle(MouseEvent e) { 
+			 if (e.getClickCount()==2) {
+			 dobleclic=dobleclic+1;
 			 Baraja=ListaCartas.get(0);
 			 rutaImagen=Baraja.getImagenCarta().toString();
 			 Imagen1.setImage(new Image(rutaImagen));
-			
 			 
-			
+			// verificar_parejas();
+			 if(dobleclic <= 1) {	
+				 x=0;
+				 Baraja2=ListaCartas.get(x);
+				 PosicionImagen=Baraja2.ID_Carta;
+				 //System.out.println(Baraja2.ID_Carta+" "+Baraja2.ImagenCarta);
+				 
+				 
+			} else {
+				 dobleclic=0;
+				 ID_uno=Baraja.ID_Carta;
+				 ID_dos=Baraja2.ID_Carta;
+				 if(ID_uno==ID_dos) {
+					 System.out.println("PREMIO PREMIO PREMIO " + ID_uno +" y "+ ID_dos);
+					 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+				 }else {
+					 //Imagen1.setImage(new Image("imagenes/incognita.jpg"));
+					 
+						 
+					 }
+				 }
+				 System.out.println("Valor de Dobleclic:  dos " + dobleclic);
+				 System.out.println("ID primera carta :" + ID_uno);
+				 System.out.println("ID segunda carta : " + ID_dos);
+				 
+				 
+				 }
+			 
+					 
+	     
 		 }
-		}
+		 }
+		
 		);
 	
 	
@@ -174,15 +198,42 @@ public void start(Stage VentanaPrincipal) {
 	Imagen2.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=2;
-			
-			Baraja=ListaCartas.get(1);
+			 if (e.getClickCount()==2) {
+				 
+			 dobleclic=dobleclic+1;
+			 Baraja=ListaCartas.get(1);
 			 rutaImagen=Baraja.getImagenCarta().toString();
 			 //rutaImagen=toString();
 			 Imagen2.setImage(new Image(rutaImagen));
+			 
+			 //
+			 //verificar_parejas();
+			 if(dobleclic <= 1) {
+				 x=1;
+				 Baraja2=ListaCartas.get(x);
+				 PosicionImagen=Baraja2.ID_Carta;
+				 System.out.println("Valor ID  carta Primer clic: "+ PosicionImagen);
+				 
+				 
+			} else {
+				 dobleclic=0;
+				 ID_uno=Baraja.ID_Carta;
+				 ID_dos=Baraja2.ID_Carta;
+				 //ID_dos=ListaCartas.get(PosicionImagen).getID_Carta();
+				 if(ID_uno==ID_dos) {
+					 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+					 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+				 }
+				 System.out.println("Valor de Dobleclic: " + dobleclic);
+				 System.out.println("ID primera carta :" + ID_uno);
+				 System.out.println("ID segunda carta : " + ID_dos);
+				 
+				 
+				 }
+			 
 			 	 
 			 }
+		 }
 		 }
 		);
 	
@@ -196,15 +247,36 @@ public void start(Stage VentanaPrincipal) {
 	Imagen3.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=3;
-			 
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 				Baraja=ListaCartas.get(2);
 				 rutaImagen=Baraja.getImagenCarta().toString();
-				 //rutaImagen=toString();
 				 Imagen3.setImage(new Image(rutaImagen));
+				 
+				 if(dobleclic <=1) {	
+					 x=2;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					 
+					 
+				}else {
+					 dobleclic=0;
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 
+					 
+					 }
 			 	 
-			 }
+			 }}
 		 }
 		);
 	
@@ -216,14 +288,37 @@ public void start(Stage VentanaPrincipal) {
 	Imagen4.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=4;
-			
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 				Baraja=ListaCartas.get(3);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen4.setImage(new Image(rutaImagen));
+				 
+				 if(dobleclic <= 1) {	
+					 x=3;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					 
+					 
+				}else {
+					 dobleclic=0;
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 
+					 
+					 }
 			 	 
 			 }
+		 }
 		 }
 		);
 	
@@ -235,13 +330,36 @@ public void start(Stage VentanaPrincipal) {
 	Imagen5.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=5;
-			 
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 				Baraja=ListaCartas.get(4);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen5.setImage(new Image(rutaImagen));
-			 	 
+				 
+				 if(dobleclic <= 1) {	
+					 x=4;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					 
+					 
+				} else {
+					dobleclic=0;
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 
+					 
+					 }	 
+						 
+			 } 
 			 }
 		 }
 		);
@@ -254,12 +372,36 @@ public void start(Stage VentanaPrincipal) {
 	Imagen6.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=6;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			
 				Baraja=ListaCartas.get(5);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen6.setImage(new Image(rutaImagen));
+				 
+				 if(dobleclic <= 1) {	
+					 x=5;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					 
+					 
+				}else {
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				 
+			 }		 
 			 	 
 			 }
 		 }
@@ -273,13 +415,37 @@ public void start(Stage VentanaPrincipal) {
 	Imagen7.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=7;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			
-				Baraja=ListaCartas.get(6);
+				 Baraja=ListaCartas.get(6);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen7.setImage(new Image(rutaImagen));
-			 	 
+				 
+				 if(dobleclic <= 1) {	
+					 x=6;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					
+					 
+				}else {
+					 dobleclic=0;
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+	 
+					 }
+				 
+						 
+			 }
 			 }
 		 }
 		);
@@ -292,13 +458,35 @@ public void start(Stage VentanaPrincipal) {
 	Imagen8.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=8;
+			 if (e.getClickCount()==2) {
+				 dobleclic=dobleclic+1;
 			 
 				Baraja=ListaCartas.get(7);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen8.setImage(new Image(rutaImagen));
-			 	 
+				 
+				 if(dobleclic <=1) {	
+					 x=7;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);	
+					 
+				}else {
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				
+						 
+			 }
 			 }
 		 }
 		);
@@ -311,13 +499,36 @@ public void start(Stage VentanaPrincipal) {
 	Imagen9.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=9;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			 
 				Baraja=ListaCartas.get(8);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen9.setImage(new Image(rutaImagen));
-			 	 
+				 
+				 if(dobleclic <= 1) {		
+					 x=8;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					
+					 
+				}else {
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				 
+			 }		 
 			 }
 		 }
 		);
@@ -330,13 +541,38 @@ public void start(Stage VentanaPrincipal) {
 	Imagen10.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=10;
+			 if (e.getClickCount()==2) {
+				 
+				 dobleclic=dobleclic+1;
 			
 				Baraja=ListaCartas.get(9);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen10.setImage(new Image(rutaImagen));
-			 	 
+				 
+				 if(dobleclic <= 1) {	
+					 x=9;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					 
+					 
+				}else {
+					 dobleclic=0;
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 
+					 
+					 }
+				 
+						 
+			 }
 			 }
 		 }
 		);
@@ -349,14 +585,39 @@ public void start(Stage VentanaPrincipal) {
 	Imagen11.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=11;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			 
 				Baraja=ListaCartas.get(10);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen11.setImage(new Image(rutaImagen));
+				 
+				 if(dobleclic <= 1) {	
+					 x=10;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					
+					 
+				}else {
 			 	 
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				 
+						 
 			 }
+		 }
 		 }
 		);
 	
@@ -368,12 +629,37 @@ public void start(Stage VentanaPrincipal) {
 	Imagen12.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=12;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			 
 				Baraja=ListaCartas.get(11);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen12.setImage(new Image(rutaImagen));
+				 
+				 if(dobleclic <= 1) {	
+					 x=11;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					 
+					 
+				}else {
+					 dobleclic=0;
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 
+					 
+					 }
+				 
+			 }		 
 			 	 
 			 }
 		 }
@@ -387,13 +673,36 @@ public void start(Stage VentanaPrincipal) {
 	Imagen13.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=13;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			
 				Baraja=ListaCartas.get(12);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen13.setImage(new Image(rutaImagen));
-			 	 
+				 
+				 if(dobleclic <= 1) {	
+					 x=12;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					
+				}else {
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				
+						 
+			 } 
 			 }
 		 }
 		);
@@ -406,13 +715,36 @@ public void start(Stage VentanaPrincipal) {
 	Imagen14.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=14;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			
 				Baraja=ListaCartas.get(13);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen14.setImage(new Image(rutaImagen));
-			 	 
+				 
+				 if(dobleclic <= 1) {	
+					 x=13;
+					 Baraja2.ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					 
+				}else {
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				
+						 
+			 }
 			 }
 		 }
 		);
@@ -425,15 +757,41 @@ public void start(Stage VentanaPrincipal) {
 	Imagen15.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=15;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			
 				Baraja=ListaCartas.get(14);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen15.setImage(new Image(rutaImagen));
-			 	 
+				 
+				 if(dobleclic <= 1) {	
+					 x=14;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					
+				 }
+					 else {
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				
+					 
+				}
+						 
+			 } 
 			 }
-		 }
+		 
 		);
 	
 	Imagen16 = new ImageView("Imagenes/incognita.jpg");
@@ -444,16 +802,41 @@ public void start(Stage VentanaPrincipal) {
 	Imagen16.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=16;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			
 				Baraja=ListaCartas.get(15);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen16.setImage(new Image(rutaImagen));
+				 
+				 if(dobleclic <= 1) {	
+					 x=15;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					 
+				}else {
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				 
+			 }		 
 			 	 
 			 }
 		 }
 		);
+	////////
+	
 	
 	Imagen17 = new ImageView("Imagenes/incognita.jpg");
 	Imagen17.relocate(150, 550);
@@ -463,17 +846,41 @@ public void start(Stage VentanaPrincipal) {
 	Imagen17.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=17;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			 
 				Baraja=ListaCartas.get(16);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen17.setImage(new Image(rutaImagen));
-			 	 
+				 
+				 if(dobleclic <= 1) {	
+					 x=16;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					
+					 
+				}else {
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				 
+						 
+			 } 
 			 }
 		 }
 		);
-	
+	///////////////////////////////////
 	Imagen18 = new ImageView("Imagenes/incognita.jpg");
 	Imagen18.relocate(290, 550);
 	Imagen18.setFitWidth(105);
@@ -482,12 +889,36 @@ public void start(Stage VentanaPrincipal) {
 	Imagen18.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=18;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			 
 				Baraja=ListaCartas.get(17);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen18.setImage(new Image(rutaImagen));
+				 
+				 if(dobleclic <= 1) {	
+					 x=17;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					
+					 
+				}else {
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				 
+			 }		 
 			 	 
 			 }
 		 }
@@ -501,15 +932,40 @@ public void start(Stage VentanaPrincipal) {
 	Imagen19.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=19;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked"+dobleclic);
+				 dobleclic=dobleclic+1;
 			
 				Baraja=ListaCartas.get(18);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen19.setImage(new Image(rutaImagen));
+				 
+				 if(dobleclic <= 1) {	
+					 x=18;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					
+				 }else
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				
+					 
+				}
+			 		 
 			 	 
 			 }
-		 }
+		 
 		);
 	
 	
@@ -521,15 +977,40 @@ public void start(Stage VentanaPrincipal) {
 	Imagen20.setOnMouseClicked(new EventHandler <MouseEvent> (){
 		 @Override
 	     public void handle(MouseEvent e) {
-			 System.out.println("Double clicked");
-			 PosicionImagen=20;
+			 if (e.getClickCount()==2) {
+				 System.out.println("Double clicked" + dobleclic);
+				 dobleclic=dobleclic+1;
 			
-				Baraja=ListaCartas.get(19);
+				 Baraja=ListaCartas.get(19);
 				 rutaImagen=Baraja.getImagenCarta().toString();
 				 Imagen20.setImage(new Image(rutaImagen));
-			 	 
+				 
+				 if(dobleclic <= 1) {	
+					 x=19;
+					 Baraja2=ListaCartas.get(x);
+					 PosicionImagen=Baraja2.ID_Carta;
+					 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+					 
+				 }else {		 
+					 ID_uno=Baraja.ID_Carta;
+					 ID_dos=Baraja2.ID_Carta;
+					 if(ID_uno==ID_dos) {
+						 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+						 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 }
+					 System.out.println("Valor de Dobleclic: " + dobleclic);
+					 System.out.println("ID primera carta :" + ID_uno);
+					 System.out.println("ID segunda carta : " + ID_dos);
+					 dobleclic=0;
+					 
+					 }
+				
+					 
+				}
+						 
 			 }
-		 }
+			 }
+		 
 		);
 	
 	
@@ -561,6 +1042,27 @@ public void start(Stage VentanaPrincipal) {
 	VentanaPrincipal.show();
 			
 	
+}
+public void verificar_parejas() {
+	
+	if(dobleclic >= 2) {
+		 ID_uno=ListaCartas.get(0).getID_Carta();
+		 ID_dos=ListaCartas.get(PosicionImagen).getID_Carta();
+		 if(ID_uno==ID_dos) {
+			 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+		 }
+		 System.out.println("Valor de Dobleclic: " + dobleclic);
+		 System.out.println("Primera carta Posición:" + ID_uno);
+		 System.out.println("Segunda carta Posición: " + ID_dos);
+		 dobleclic=0;
+		 
+		 }
+	 if(dobleclic < 2) {			 
+		 PosicionImagen=ListaCartas.get(PosicionImagen).getID_Carta();;
+		 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+		 dobleclic=dobleclic+1;
+		 
+	}
 }
 
 public void seleccionartema() {
@@ -599,6 +1101,7 @@ public void repartircartas() {
 
 public void asignar_cartas_matematicas() {
 	
+	 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
 	
 	ListaCartas.clear();
 	
@@ -645,11 +1148,13 @@ public void asignar_cartas_matematicas() {
 	ListaCartas.add(18, carta19);
 	ListaCartas.add(19, carta20);
 	
-	Collections.shuffle(ListaCartas);
+	//Collections.shuffle(ListaCartas);
 	
 		
 		}
 public void asignar_cartas_programacion() {
+	
+	 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
 	
 ListaCartas.clear();
 	
@@ -703,6 +1208,8 @@ ListaCartas.clear();
 
 public void asignar_cartas_ingles() {
 	
+	 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+	
 ListaCartas.clear();
 	
 	Cartas carta1 = new Cartas(1,"ingles/1_.png", "M", false);
@@ -715,7 +1222,7 @@ ListaCartas.clear();
 	Cartas carta8 = new Cartas(4,"ingles/12.png", "M", false );
 	Cartas carta9 = new Cartas(5,"ingles/13_.png", "M", false );
 	Cartas carta10 = new Cartas(5,"ingles/13.png", "M", false );
-	Cartas carta11 = new Cartas(6,"ingles/14.png", "M", false );
+	Cartas carta11 = new Cartas(6,"ingles/14_.png", "M", false );
 	Cartas carta12 = new Cartas(6,"ingles/14.png", "M", false );
 	Cartas carta13 = new Cartas(7,"ingles/15_.png", "M", false );
 	Cartas carta14 = new Cartas(7,"ingles/15.png", "M", false );
