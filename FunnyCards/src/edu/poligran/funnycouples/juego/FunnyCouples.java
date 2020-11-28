@@ -8,8 +8,10 @@ import java.util.*;
 import edu.poligran.funnycouples.juego.Cartas;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane; 
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.scene.control.Label; 
 import javafx.scene.control.Button;
 import javafx.scene.image.*;
@@ -28,11 +30,12 @@ public class FunnyCouples extends Application{
 	
 	int dobleclic=0;
 	int ID_uno=0, ID_dos=0;
-	int PosicionImagen=0, x=0;
-	String rutaImagen;
+	int PosicionImagen=0, x=0, score=0, lifes=0;
+	String rutaImagen, NombreImageView;
 	
 	
 	Cartas Baraja, Baraja2;
+	//Jugador Player_1 = new Jugador("Player 1", 0, 0);
 	
 	Scene miEscena;
 	Pane contenedor;
@@ -63,6 +66,9 @@ public void start(Stage VentanaPrincipal) {
 	
 	//nodo tipo texto
 	Label mensaje = new Label("Bienvenidos a FunnyCouples Game. Recuerde que debe encontrar todas las parejas en el menor de los intentos posibles. Buena suerte...");
+	Label Labelpuntaje = new Label(" Puntaje");
+	Label Labelintentos = new Label("Intentos ");
+	Text Textpuntaje = new Text();
 	/*  Elementos contenedor tema - se definen 3 botones con el respectivo tema*/
 	
 	Btn1 = new Button("Matematicas");
@@ -77,6 +83,8 @@ public void start(Stage VentanaPrincipal) {
 	Btn2.setMinWidth(80);	
 	Btn2.setTranslateX(240);
 	Btn2.setTranslateY(30);
+	Labelpuntaje.relocate(400, 30);
+	Labelintentos.relocate(500, 50);
 	
 	//clic botones
 	
@@ -113,6 +121,7 @@ public void start(Stage VentanaPrincipal) {
 		    				
 		
 		}});
+	
 	/*
 	private void voltear_carta(Cartas carta, ImageView imagen,String imagenes) {
 		if(carta.isCarta_Volteada()) {
@@ -148,6 +157,7 @@ public void start(Stage VentanaPrincipal) {
 		 @Override
 	     public void handle(MouseEvent e) { 
 			 if (e.getClickCount()==2) {
+		
 			 dobleclic=dobleclic+1;
 			 Baraja=ListaCartas.get(0);
 			 rutaImagen=Baraja.getImagenCarta().toString();
@@ -168,6 +178,10 @@ public void start(Stage VentanaPrincipal) {
 				 if(ID_uno==ID_dos) {
 					 System.out.println("PREMIO PREMIO PREMIO " + ID_uno +" y "+ ID_dos);
 					 dobleclic=0;ID_uno=0;ID_dos=0;PosicionImagen=0;
+					 Imagen1.setDisable(true);
+					 //Object.class.NombreImageView.setDisable(true);
+					// Player1.setPuntaje(score+1);
+					 
 				 }else {
 					 //Imagen1.setImage(new Image("imagenes/incognita.jpg"));
 					 
@@ -199,7 +213,7 @@ public void start(Stage VentanaPrincipal) {
 		 @Override
 	     public void handle(MouseEvent e) {
 			 if (e.getClickCount()==2) {
-				 
+			 NombreImageView="Imagen2";	 
 			 dobleclic=dobleclic+1;
 			 Baraja=ListaCartas.get(1);
 			 rutaImagen=Baraja.getImagenCarta().toString();
@@ -1019,7 +1033,7 @@ public void start(Stage VentanaPrincipal) {
 	Pane contenedor = new Pane();
 	
 	contenedor.getChildren().addAll(Btn1, Btn2, Btn3, mensaje, Imagen1, Imagen2, Imagen3, Imagen4, Imagen5, Imagen6, Imagen7, Imagen8, Imagen9, Imagen10,
-			Imagen11, Imagen12, Imagen13, Imagen14, Imagen15, Imagen16, Imagen17, Imagen18, Imagen19, Imagen20);
+			Imagen11, Imagen12, Imagen13, Imagen14, Imagen15, Imagen16, Imagen17, Imagen18, Imagen19, Imagen20, Labelpuntaje, Labelintentos);
 	//contenedor.getChildren().add(mensaje);
 	//tamaño de contenedor
 	contenedor.setMinSize(400, 500);
@@ -1045,11 +1059,19 @@ public void start(Stage VentanaPrincipal) {
 }
 public void verificar_parejas() {
 	
-	if(dobleclic >= 2) {
-		 ID_uno=ListaCartas.get(0).getID_Carta();
-		 ID_dos=ListaCartas.get(PosicionImagen).getID_Carta();
+	/*Este es el codigo que está en cada clic de imagen. La idea es convertirlo a que funcione desde aquí
+	 *Para todos los botones 
+	 */
+	 if(dobleclic < 2) {			 
+		 PosicionImagen=ListaCartas.get(PosicionImagen).getID_Carta();;
+		 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
+		 dobleclic=dobleclic+1;
+		 
+	}else {
+		 ID_uno=Baraja.ID_Carta;
+		 ID_dos=Baraja2.ID_Carta;
 		 if(ID_uno==ID_dos) {
-			 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +" "+ " "+ ID_dos);
+			 System.out.println("PREMIO PREMIO PREMIO " + dobleclic + "" + ID_uno +". . ."+ " "+ ID_dos);
 		 }
 		 System.out.println("Valor de Dobleclic: " + dobleclic);
 		 System.out.println("Primera carta Posición:" + ID_uno);
@@ -1057,15 +1079,12 @@ public void verificar_parejas() {
 		 dobleclic=0;
 		 
 		 }
-	 if(dobleclic < 2) {			 
-		 PosicionImagen=ListaCartas.get(PosicionImagen).getID_Carta();;
-		 System.out.println("Valor variable PosicionImagen: "+ PosicionImagen);
-		 dobleclic=dobleclic+1;
-		 
-	}
+	
 }
 
 public void seleccionartema() {
+	
+	/*Setea todas las imagenes con la incognita */
 	
 	
 	Imagen1.setImage(new Image("Imagenes/incognita.jpg"));
@@ -1091,13 +1110,6 @@ public void seleccionartema() {
 	
 }
 
-public ArrayList<ImageView> getImages() {
-    return getImages();
-}
-
-public void repartircartas() {
-	
-}
 
 public void asignar_cartas_matematicas() {
 	
@@ -1255,7 +1267,7 @@ ListaCartas.clear();
 	ListaCartas.add(18, carta19);
 	ListaCartas.add(19, carta20);
 	
-	Collections.shuffle(ListaCartas);
+	//Collections.shuffle(ListaCartas);
 	
 	
 	
