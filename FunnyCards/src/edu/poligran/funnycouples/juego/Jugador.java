@@ -1,6 +1,5 @@
 package edu.poligran.funnycouples.juego;
 
-
 /**
  * 
  */

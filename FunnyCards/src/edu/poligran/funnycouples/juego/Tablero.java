@@ -3,24 +3,45 @@ package edu.poligran.funnycouples.juego;
 import java.util.ArrayList;
 
 
-public class Tablero extends FunnyCouples {
+public class Tablero {
 	
-	private boolean findeljuego;
-	public int [] parejasEncontradas;
 	
-
-	public void setFindeljuego(boolean findeljuego) {
-		this.findeljuego = findeljuego;
+	private ArrayList<Cartas> cartas;
+	private int puntaje = 0;
+	private int intentos = 0;
+	
+	public int getPuntaje() {
+		return puntaje;
 	}
 
 
-	public int[] getParejasEncontradas() {
-		return parejasEncontradas;
+	public void setPuntaje(int puntaje) {
+		this.puntaje = puntaje;
 	}
 
 
-	public void setParejasEncontradas(int[] parejasEncontradas) {
-		this.parejasEncontradas = parejasEncontradas;
+	public int getIntentos() {
+		return intentos;
+	}
+
+
+	public void setIntentos(int intentos) {
+		this.intentos = intentos;
+	}
+
+
+	public Tablero(){
+		
+	}
+
+
+	public ArrayList<Cartas> getCartas() {
+		return cartas;
+	}
+
+
+	public void setCartas(ArrayList<Cartas> cartas) {
+		this.cartas = cartas;
 	}
 
 
@@ -31,25 +52,6 @@ public class Tablero extends FunnyCouples {
     	
     	
     }
-
- 
-  public void Repartir_Cartas() {
-	  
-	  
-	  
-  
-    	
-    }
-   
- 	
-  
-    
-  public boolean es_pareja() {
-	return false;
-	  
-	   
-    
-}
 
 
 }
